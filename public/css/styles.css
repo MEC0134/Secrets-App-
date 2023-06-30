@@ -1,0 +1,82 @@
+body {
+  background-color: #E8ECEF;
+}
+
+/* .centered {
+      padding-top: 200px;
+      text-align: center;
+  } */
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+
+/* Login */
+
+.login-btn {
+  text-align: center;
+  margin-left: 38%;
+}
+
+.login-form-title {
+  margin-bottom: 7%;
+  margin-left: 17%;
+}
+
+
+
+
+
+/* Register */
+
+.vh-100 {
+  background-color: #0096a1;
+  background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+}
+
+.gradient-custom-3 {
+  background: #84fab0;
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+}
+
+.gradient-custom-4 {
+  background: #84fab0;
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
+
+
+.err-message {
+  background-color: lightcoral;
+  margin-bottom: 3%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer {
+  position: absolute;
+  left: 44%;
+  bottom: 0;
+}
