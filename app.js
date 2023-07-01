@@ -34,7 +34,6 @@ app.post('/register', (req, res) => {
     if (userData.userPassword === userData.confirmPassword) {
         newUser.save()
             .then(savedUser => {
-                console.log('User saved:', savedUser);
                 res.render('secrets');
             })
             .catch(err => {
@@ -61,11 +60,10 @@ app.post('/login', (req, res) => {
                 res.render('secrets');
             } else {
                 res.render('login', { errMessage: 'Email or Passowrd is wrong, please try again!' })
-                console.log(foundUser.password);
             }
         })
         .catch(err => {
-            console.log('Error: ' + err);
+            console.log(err);
         });
 });
  
