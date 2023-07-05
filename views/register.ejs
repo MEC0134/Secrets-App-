@@ -8,35 +8,25 @@
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                                <form action="/register" method="post">
+                                <form action="/register" method="POST">
+
                                     <div class="form-outline mb-4">
-                                        <input type="text" name="userName" id="form3Example1cg"
-                                            class="form-control form-control-lg" required />
+                                        <input type="text" name="username" id="form3Example1cg"
+                                            class="form-control form-control-lg"  />
                                         <label class="form-label" for="form3Example1cg">Your Name</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="email" name="userEmail" id="form3Example3cg"
+                                        <input type="email" name="useremail" id="form3Example3cg"
                                             class="form-control form-control-lg" required />
                                         <label class="form-label" for="form3Example3cg">Your Email</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" name="userPassword" id="form3Example4cg"
+                                        <input type="password" name="password" id="form3Example4cg"
                                             class="form-control form-control-lg" required />
                                         <label class="form-label" for="form3Example4cg">Password</label>
                                     </div>
-
-                                    <div class="form-outline mb-4">
-                                        <input type="password" name="confirmPassword" id="form3Example4cdg"
-                                            class="form-control form-control-lg" required />
-                                        <label class="form-label" for="form3Example4cdg">Confirm Password</label>
-                                    </div>
-                                    <% if(errMessage) { %>
-                                    <p class="text-center err-message">
-                                        <%= errMessage %>
-                                    </p>
-                                    <% } %>
 
                                     <div class="d-flex justify-content-center">
                                         <button type="submit"

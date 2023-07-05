@@ -1,80 +1,114 @@
 //jshint esversion:6 
-
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
-const { User } = require('./db');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
+const flash = require('connect-flash');
 
 const app = express();
+app.use(flash());
 
+mongoose.set('strictQuery', false);
 
 app.use(express.static("public"));
-app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {}
+}));
 
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+//-------------- DB Connection ----------------------//
+mongoose.connect(process.env.db_uri, { useNewUrlParser: true })
+    .then(() => {
+        console.log('Database Connected');
+    })
+    .catch(err => {
+        console.log(err);
+    });
+//-------------- DB Connection ----------------------//
+
+const userSchema = new mongoose.Schema({
+    username: String,
+    email: String,
+    password: String,
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User = new mongoose.model('User', userSchema);
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+//--------------------- GET ROUTES -----------------------//
 app.get('/', (req, res) => {
     res.render('home');
-})
-
-// Register Routes
-app.get('/register', (req, res) => {
-    res.render('register', { errMessage: '' });
 });
-app.post('/register', (req, res) => {
 
-    const userData = req.body;
+app.get('/login', (req, res) => {
+    const error = req.flash('error')[0];
+    res.render('login', { error: error });
+});
 
-    const newUser = new User({
-        name: req.body.userName,
-        email: req.body.userEmail,
-        password: req.body.userPassword
-    });
-
-    if (userData.userPassword === userData.confirmPassword) {
-        newUser.save()
-            .then(savedUser => {
-                res.render('secrets');
-            })
-            .catch(err => {
-                console.error('Error saving user:', err);
-            });
+app.get('/secrets', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.render('secrets');
     } else {
-        res.render('register', { errMessage: "Password do not match!" })
+        res.redirect('/login');
     }
 });
 
-
-// Login Routes
-app.get('/login', (req, res) => {
-    res.render('login', { errMessage: '' });
+app.get('/register', (req, res) => {
+    res.render('register');
 });
-app.post('/login', (req, res) => {
-
-    const userEmail = req.body.userEmail;
-    const userPassword = req.body.userPassword;
-
-    User.findOne({ email: userEmail })
-        .then(foundUser => {
-            if (foundUser.password === userPassword) {
-                res.render('secrets');
-            } else {
-                res.render('login', { errMessage: 'Email or Passowrd is wrong, please try again!' })
-            }
-        })
-        .catch(err => {
+app.get("/logout", function(req,res){
+    req.logout((err)=>{
+        if(err){
             console.log(err);
-        });
+        }else{
+            res.redirect("/");
+        }
+    });
 });
- 
 
 
+//--------------------- POST ROUTES -----------------------//
+app.post('/register', (req, res) => {
+    const username = req.body.username;
+    const useremail = req.body.useremail;
+    const password = req.body.password;
+    User.register({ username: username, email: useremail }, password).then(() => {
+        const authenticate = passport.authenticate('local');
+        authenticate(req, res, () => {
+            res.redirect('/secrets');
+        });
+    }).catch(err => {
+        console.log(err);
+        res.redirect("/register");
+    });
+});
 
-
-
-
-
-
+app.post("/login", passport.authenticate('local', {
+    successRedirect: '/secrets',
+    failureRedirect: '/login',
+    failureFlash: true,
+}), function (req, res) {
+    res.redirect("/secrets");
+});
 
 
 
@@ -82,4 +116,4 @@ app.post('/login', (req, res) => {
 
 app.listen(3000, () => {
     console.log('Server Running');
-})
+});

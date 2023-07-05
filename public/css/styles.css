@@ -2,10 +2,10 @@ body {
   background-color: #E8ECEF;
 }
 
-/* .centered {
+.centered {
       padding-top: 200px;
       text-align: center;
-  } */
+  }
 
 .secret-text {
   text-align: center;
@@ -22,13 +22,8 @@ body {
 }
 
 .login-form-title {
-  margin-bottom: 7%;
-  margin-left: 17%;
+  text-align: center;
 }
-
-
-
-
 
 /* Register */
 
@@ -54,26 +49,6 @@ body {
   background-color: lightcoral;
   margin-bottom: 3%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 footer {
   position: absolute;
