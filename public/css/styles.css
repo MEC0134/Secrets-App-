@@ -3,7 +3,7 @@ body {
 }
 
 .centered {
-      padding-top: 200px;
+      padding: 200px 100px;
       text-align: center;
   }
 
@@ -47,7 +47,6 @@ body {
 
 .err-message {
   background-color: lightcoral;
-  margin-bottom: 3%;
 }
 
 footer {
@@ -55,3 +54,28 @@ footer {
   left: 44%;
   bottom: 0;
 }
+
+/* Submit Secret */
+
+.submit-secret {
+  margin-top: 24px;
+}
+
+/* Socials */
+.socials {
+  margin-top: 2%;
+}
+.google, .facebook {
+  margin-top: 12px;
+  text-align: center;
+}
+.btn-google { 
+  background-color: #DB4437;
+  width: 48%;
+  opacity: 0.9;
+}
+.btn-facebook {
+  width: 48%;
+  opacity: 0.9;
+}
+

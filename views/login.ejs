@@ -23,23 +23,36 @@
                                 class="form-control form-control-lg" />
                             <label class="form-label" for="form1Example23">Password</label>
                         </div>
-                        
+
                         <% if (error) { %>
-                            <div class="alert alert-danger" role="alert" style="visibility: visible;">
+                            <div class="alert alert-danger err-message" role="alert" style="visibility: visible;">
                                 <p>
                                     <%= error %>
                                 </p>
                             </div>
-                        <% } else { %>
-                            <div class="alert alert-danger" role="alert" style="visibility: hidden;">
-                                <p>
-                                    <%= error %>
-                                </p>
-                            </div>
-                        <% } %>
-                        
-                                <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                            <% } else { %>
+                                <div class="alert alert-danger err-message" role="alert" style="visibility: hidden;">
+                                    <p>
+                                        <%= error %>
+                                    </p>
+                                </div>
+                                <% } %>
+
+                                    <button type="submit"
+                                        class="btn btn-primary btn-lg btn-block login-btn">Login</button>
                     </form>
+                    <!-- Socials -->
+                    <div class="row socials">
+                        <div class="col-md-12 google">
+                            <a class="btn btn-primary btn-google" href="/auth/google"><img
+                                    src="https://img.icons8.com/color/16/000000/google-logo.png">
+                                Login with Google</a>
+                        </div>
+                        <div class="col-md-12 facebook">
+                            <a class="btn btn-primary btn-facebook" style="background-color: #3b5998;" href="/auth/facebook"
+                                role="button"><i class="fab fa-facebook-f"></i> Login with Facebook</a>
+                        </div>
+                    </div>
                     <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="/register"
                             class="fw-bold text-body"><u>Register</u></a></p>
                 </div>
