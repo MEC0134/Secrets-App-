@@ -47,7 +47,10 @@ const userSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
-    secret: String
+    secret: {
+        secretTitle: String, 
+        secretBody: String
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -79,7 +82,6 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/secrets"
 },
     function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
         User.findOrCreate({ googleId: profile.id }, function (err, user) {
             return cb(err, user);
         });
@@ -92,7 +94,6 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://localhost:3000/auth/facebook/secrets"
 },
     function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
         User.findOrCreate({ facebookId: profile.id }, function (err, user) {
             return cb(err, user);
         });
@@ -188,11 +189,14 @@ app.post("/login", passport.authenticate('local', {
 });
 
 app.post('/submit', (req, res) => {
-    const secretSubmitted = req.body.secret;
+    const secretTitle = req.body.secretTitle;
+    const secretBody = req.body.secretBody;
+
     User.findById(req.user.id)
         .then(foundUser => {
             if (foundUser) {
-                foundUser.secret = secretSubmitted;
+                foundUser.secret.secretBody = secretBody;
+                foundUser.secret.secretTitle = secretTitle;
                 foundUser.save();
                 res.redirect('/secrets');
             }

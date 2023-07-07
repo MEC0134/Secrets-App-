@@ -1,11 +1,18 @@
 body {
+  margin: 0;
+  padding: 0;
   background-color: #E8ECEF;
 }
 
+.vh-100 {
+  background-color: #0096a1;
+  background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+}
+
 .centered {
-      padding: 200px 100px;
-      text-align: center;
-  }
+  padding: 200px 100px;
+  text-align: center;
+}
 
 .secret-text {
   text-align: center;
@@ -14,68 +21,97 @@ body {
   background-color: #000;
 }
 
+.btn-home {
+  width: 120px;
+  margin-bottom: 12px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
 /* Login */
 
-.login-btn {
+#login-form {
   text-align: center;
-  margin-left: 38%;
 }
 
 .login-form-title {
   text-align: center;
 }
 
-/* Register */
-
-.vh-100 {
+.btn-login {
   background-color: #0096a1;
-  background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
 }
-
-.gradient-custom-3 {
-  background: #84fab0;
-  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
-  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
-}
-
-.gradient-custom-4 {
-  background: #84fab0;
-  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
-  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
-}
-
 
 .err-message {
   background-color: lightcoral;
 }
 
-footer {
-  position: absolute;
-  left: 44%;
-  bottom: 0;
+/* Register */
+
+.btn-register {
+  background-color: #0096a1;
 }
 
-/* Submit Secret */
 
-.submit-secret {
-  margin-top: 24px;
+/* Submit.ejs */
+
+.secret-form>input {
+  margin-bottom: 3.8%;
 }
+
+.btn-submit {
+  background-color: #0096a1;
+}
+
+/* Secret.ejs */
+
+.gradient-custom-3 {
+  background: #84fab0;
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  background-color: #00996e;
+  background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
+  opacity: 0.9;
+}
+
+.gradient-custom-4 {
+  background: #F5F5F5;
+  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
+
+
+.secret-card {
+  margin-bottom: 2%;
+}
+
 
 /* Socials */
 .socials {
   margin-top: 2%;
+  margin-bottom: 0;
 }
-.google, .facebook {
+
+.google,
+.facebook {
   margin-top: 12px;
   text-align: center;
 }
-.btn-google { 
+
+.btn-google {
   background-color: #DB4437;
-  width: 48%;
-  opacity: 0.9;
-}
-.btn-facebook {
-  width: 48%;
+  width: 38%;
   opacity: 0.9;
 }
 
+.btn-facebook {
+  width: 38%;
+  opacity: 0.9;
+}
